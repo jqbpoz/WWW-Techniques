@@ -1,3 +1,164 @@
-* {
-  background-color: red;
+$color--primary: #6f1a07;
+$color-background--1: #f7f3e3;
+$font-size-low: 1.8rem;
+$font--size-middle: 3rem;
+$font--size-large: 4rem;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  background-color: $color-background--1;
+  font-size: $font-size-low;
+}
+
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+// @media only screen and (max-width: 30em) {
+//   html {
+//     font-size: 45%;
+//   }
+// }
+
+.margin--low {
+  margin-top: 1rem;
+}
+
+.margin--middle {
+  margin-top: 1.5rem;
+}
+
+.margin--max {
+  margin-top: 2rem;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  height: 20rem;
+  width: 100%;
+  // background-image: url("../resources/pizza1.jpeg");
+  background-color: $color--primary;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    clip-path: polygon(45% 0, 100% 0, 100% 100%, 55% 100%); // Kształt trapezu
+    z-index: 1;
+  }
+  &__description {
+    color: white;
+    padding: 2rem, 2rem, 2rem, 2rem;
+    position: absolute;
+    left: 10%;
+    z-index: 2;
+    font-size: $font--size-large;
+    font-weight: 300;
+  }
+}
+
+.section {
+  max-width: 100rem;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__about {
+    &--header {
+      font-size: $font--size-middle;
+    }
+  }
+
+  &__gallery {
+    position: relative;
+    height: 80rem;
+    padding: 2rem;
+    .pizza-item {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+
+      width: 46rem;
+
+      &-1 {
+        top: 5%;
+        left: 0;
+      }
+      &-2 {
+        top: 20%;
+        right: 0%;
+      }
+      &-3 {
+        top: 50%;
+        left: 5%;
+      }
+
+      @media (max-width: 700px) {
+        &-1 {
+          position: static;
+          width: 100%;
+          left: 100%;
+          right: 100%;
+        }
+        &-2,
+        &-3 {
+          height: 0;
+          display: none;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    &__gallery {
+      height: min-content;
+    }
+  }
 }
