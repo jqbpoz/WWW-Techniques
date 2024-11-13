@@ -3,3 +3,7 @@ Static Website/.parcel-cache/
 Static Website/node_modules/
 Static Website/.cache/
 Static Website/dist/
+
+Dynamic Website/node_modules/
+Dynamic Website/.env
+

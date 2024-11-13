@@ -1,0 +1,141 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 50%;
+  }
+}
+body {
+  font-family: "Source Code Pro", monospace;
+  color: black;
+  font-weight: 300;
+  line-height: 1.6;
+  background-color: #eee;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 5rem;
+  color: #eee;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: left;
+  width: 100%;
+  font-size: 3rem;
+  background-color: #ff9721;
+}
+.header__text {
+  width: 80%;
+}
+
+.data__container {
+  width: 80%;
+  display: flex;
+  margin: 2rem 0;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  background-color: #eee;
+  font-size: 2rem;
+  width: 70%;
+}
+.data__row {
+  margin: 0 5rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  position: relative;
+}
+.data__row:first-child {
+  padding-bottom: 2rem;
+}
+.data__row:first-child {
+  border-bottom: solid rgba(0, 0, 0, 0.4);
+}
+.data__row *:nth-child(2) {
+  margin-right: 2rem;
+}
+.data__text {
+  width: 30%;
+  text-align: center;
+}
+.data__input {
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  font-size: inherit;
+  width: 30%;
+  border: solid rgba(0, 0, 0, 0.4);
+  border-radius: 50px;
+  font-family: "Rubik", sans-serif;
+  text-align: center;
+}
+.data__input:focus {
+  outline: none;
+  border: 2px solid #ff9721;
+}
+.data__btn {
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  font-size: inherit;
+  width: 30%;
+  border: solid rgba(0, 0, 0, 0.4);
+  border-radius: 50px;
+  font-family: "Rubik", sans-serif;
+  background-color: #ff9721;
+  color: white;
+  font-family: "Source Code Pro", monospace;
+  cursor: pointer;
+}
+.data__btn:first-child {
+  margin-right: 1rem;
+}
+.data__number {
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.4rem;
+}
+
+.result {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Rubik", sans-serif;
+  font-size: 12rem;
+  color: #ff9721;
+  margin: 4rem 4rem 0 0;
+}
+
+.chart {
+  width: 100%;
+}
+.chart__canvas {
+  width: 100%;
+}
+
+/*# sourceMappingURL=styles.css.map */
