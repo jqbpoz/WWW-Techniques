@@ -67,11 +67,9 @@ body {
   margin-top: 1.5rem;
   position: relative;
 }
-.data__row:first-child {
-  padding-bottom: 2rem;
-}
-.data__row:first-child {
+.data__row:nth-child(4) {
   border-bottom: solid rgba(0, 0, 0, 0.4);
+  padding-bottom: 2rem;
 }
 .data__row *:nth-child(2) {
   margin-right: 2rem;

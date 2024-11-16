@@ -1,20 +1,24 @@
+// app.js
 const express = require("express");
+const { connectDB } = require("./models/db");
+require("dotenv").config();
+
 const app = express();
-const averageRoutes = require("./routes/averageRoutes");
-const db = require("./models/db"); // Importuj plik db.js, aby zainicjalizować bazę danych
 
-// Ustawienia
-app.set("view engine", "ejs"); // Ustaw EJS jako silnik szablonów
+// Connect to MySQL
+connectDB();
+
+// Set EJS as the templating engine
+app.set("view engine", "ejs");
+
+// Middleware to serve static files
 app.use(express.static("public"));
+
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); // Dodaj parsowanie JSON
 
-// Obsługa tras
-app.use("/", averageRoutes);
+const calculatorRoutes = require("./routes/calculatorRoutes");
+app.use("/", calculatorRoutes);
 
-// Uruchomienie serwera
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log(`Open your browser and navigate to: http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`App running on http://localhost:${PORT}`));

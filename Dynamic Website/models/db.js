@@ -1,41 +1,29 @@
+// models/db.js
+const { Sequelize } = require("sequelize");
 require("dotenv").config();
-const mysql = require("mysql2/promise");
-const fs = require("fs");
-const path = require("path");
 
-async function initDb() {
-  const connection = await mysql.createConnection({
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
     host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-  });
+    dialect: "mysql",
+  }
+);
 
-  // Utwórz bazę danych, jeśli nie istnieje
-  await connection.query("CREATE DATABASE IF NOT EXISTS todo_db");
+const connectDB = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("MySQL connected");
 
-  // Użyj bazy danych
-  await connection.query("USE todo_db");
+    // Synchronizuj modele z bazą danych
+    await sequelize.sync();
+    console.log("Database synchronized");
+  } catch (err) {
+    console.error("Unable to connect to the database:", err.message);
+    process.exit(1);
+  }
+};
 
-  // Wykonaj skrypt SQL do utworzenia tabeli
-  const sql = fs.readFileSync(path.join(__dirname, "../database.sql"), "utf8");
-  await connection.query(sql);
-
-  await connection.end();
-}
-
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-});
-
-initDb()
-  .then(() => {
-    console.log("Database initialized");
-  })
-  .catch((err) => {
-    console.error("Error initializing database:", err);
-  });
-
-module.exports = connection;
+module.exports = { sequelize, connectDB };
